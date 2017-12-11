@@ -1,4 +1,4 @@
-package app.oswaldogh.plazashop.Adapters;
+package app.oswaldogh.plazashop.Adapters.Product;
 
 /**
  * Created by oswaldogomez on 05/12/17.
@@ -30,9 +30,7 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
 
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_recycler_item, parent, false);
-        ListViewHolder lvh = new ListViewHolder(v);
-        return lvh;
+        return new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_recycler_item, parent, false));
     }
 
     @Override
