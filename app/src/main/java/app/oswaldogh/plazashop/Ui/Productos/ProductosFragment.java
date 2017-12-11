@@ -1,6 +1,7 @@
 package app.oswaldogh.plazashop.Ui.Productos;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,15 +14,18 @@ import android.widget.Toast;
 import java.util.ArrayList;
 
 import app.oswaldogh.plazashop.Adapters.Product.AdapterProductList;
+import app.oswaldogh.plazashop.Adapters.Product.ProductItemView;
 import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
+import app.oswaldogh.plazashop.Ui.ProductDetail.ProductDetailActivity;
 
-public class ProductosFragment extends Fragment implements Interface.View{
+public class ProductosFragment extends Fragment implements Interface.View, ProductItemView {
 
     private ProductsPresenter presenter;
     private RecyclerView recycler_productos;
+
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View v = inflater.inflate(R.layout.fragment_productos, container, false);
 
@@ -44,7 +48,15 @@ public class ProductosFragment extends Fragment implements Interface.View{
 
     @Override
     public void showProducts(ArrayList<Product> products) {
-        AdapterProductList adapter = new AdapterProductList(getActivity(),products);
+        AdapterProductList adapter = new AdapterProductList(getActivity(), products, this);
         recycler_productos.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onClickProductItem(Product res, int position) {
+        Intent i = new Intent(getContext(), ProductDetailActivity.class);
+        startActivity(i);
+        //Toast.makeText(getActivity(), "Click en : " + position, Toast.LENGTH_SHORT).show();
     }
 }

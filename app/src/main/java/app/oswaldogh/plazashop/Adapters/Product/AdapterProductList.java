@@ -4,6 +4,7 @@ package app.oswaldogh.plazashop.Adapters.Product;
  * Created by oswaldogomez on 05/12/17.
  */
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -22,10 +23,12 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
 
     private ArrayList<Product> products;
     private Context context;
+    private ProductItemView view;
 
-    public AdapterProductList(Context context, ArrayList<Product> products) {
+    public AdapterProductList(Context context, ArrayList<Product> products, ProductItemView view) {
         this.products = products;
         this.context = context;
+        this.view = view;
     }
 
     @Override
@@ -34,11 +37,17 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
     }
 
     @Override
-    public void onBindViewHolder(ListViewHolder holder, int i) {
+    public void onBindViewHolder(ListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
-        Product res = products.get(i);
+        final Product res = products.get(position);
         Glide.with(context).load(res.getUrl()).into(holder.image);
         holder.description.setText(res.getDescription());
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                view.onClickProductItem(res, position);
+            }
+        });
     }
 
     @Override
