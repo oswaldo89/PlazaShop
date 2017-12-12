@@ -1,4 +1,4 @@
-package app.oswaldogh.plazashop.Ui.Productos;
+package app.oswaldogh.plazashop.Ui.Products;
 
 import java.util.ArrayList;
 

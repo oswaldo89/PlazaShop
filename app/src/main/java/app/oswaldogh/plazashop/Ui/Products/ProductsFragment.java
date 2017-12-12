@@ -1,4 +1,4 @@
-package app.oswaldogh.plazashop.Ui.Productos;
+package app.oswaldogh.plazashop.Ui.Products;
 
 
 import android.content.Intent;
@@ -18,14 +18,14 @@ import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
 import app.oswaldogh.plazashop.Ui.ProductDetail.ProductDetailActivity;
 
-public class ProductosFragment extends Fragment implements Interface.View, ProductItemView {
+public class ProductsFragment extends Fragment implements Interface.View, ProductItemView {
 
     private ProductsPresenter presenter;
-    private RecyclerView recycler_productos;
+    private RecyclerView rv_productList;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.fragment_productos, container, false);
+        View v = inflater.inflate(R.layout.fragment_products, container, false);
         presenter = new ProductsPresenter(this);
         initRecycler(v);
         return v;
@@ -33,23 +33,23 @@ public class ProductosFragment extends Fragment implements Interface.View, Produ
 
     private void initRecycler(View v) {
         LinearLayoutManager llm = new LinearLayoutManager(getActivity());
-        recycler_productos = v.findViewById(R.id.table_agenda);
-        recycler_productos.setHasFixedSize(true);
-        recycler_productos.setLayoutManager(llm);
+        rv_productList = v.findViewById(R.id.product_list);
+        rv_productList.setHasFixedSize(true);
+        rv_productList.setLayoutManager(llm);
         presenter.getDataProducts();
     }
 
     @Override
     public void showProducts(ArrayList<Product> products) {
         AdapterProductList adapter = new AdapterProductList(getActivity(), products, this);
-        recycler_productos.setAdapter(adapter);
+        rv_productList.setAdapter(adapter);
     }
 
     @Override
-    public void onClickProductItem(Product res, int position) {
+    public void onClickProductItem(Product item, int position) {
         Intent i = new Intent(getContext(), ProductDetailActivity.class);
         Bundle extras = new Bundle();
-        extras.putString("url_image",res.getUrl());
+        extras.putString("url_image",item.getUrl());
         i.putExtras(extras);
         startActivity(i);
     }

@@ -15,7 +15,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import app.oswaldogh.plazashop.Ui.Productos.ProductosFragment;
+import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
 import app.oswaldogh.plazashop.R;
 
 public class MainActivity extends AppCompatActivity
@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         switch (position) {
             case 0:
-                ProductosFragment inboxFragment = new ProductosFragment();
+                ProductsFragment inboxFragment = new ProductsFragment();
                 fragmentTransaction.replace(R.id.fragment, inboxFragment);
 
                 break;
