@@ -56,7 +56,11 @@ public class ProductosFragment extends Fragment implements Interface.View, Produ
     @Override
     public void onClickProductItem(Product res, int position) {
         Intent i = new Intent(getContext(), ProductDetailActivity.class);
+        Bundle extras = new Bundle();
+        extras.putString("url_image",res.getUrl());
+        i.putExtras(extras);
         startActivity(i);
-        //Toast.makeText(getActivity(), "Click en : " + position, Toast.LENGTH_SHORT).show();
     }
+
+
 }
