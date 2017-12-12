@@ -2,26 +2,27 @@ package app.oswaldogh.plazashop.Ui.ProductDetail;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.transition.TransitionInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import app.oswaldogh.plazashop.R;
 
-public class ProductDetailActivity extends AppCompatActivity {
+public class ProductDetailActivity extends AppCompatActivity implements Interface.View {
+    private FloatingActionButton btnLike, btnDislike;
+    private ImageView imWhatsapp,imSms,imMsg;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_detail);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -32,14 +33,41 @@ public class ProductDetailActivity extends AppCompatActivity {
         Glide.with(this).load(url_image).into(backdrop);
 
 
+        btnLike = findViewById(R.id.btnLike);
+        btnDislike = findViewById(R.id.btnDislike);
+
+        imWhatsapp = findViewById(R.id.imWhatsapp);
+        imSms = findViewById(R.id.imSms);
+        imMsg = findViewById(R.id.imMsg);
     }
+
+    public void clickLike(View v){
+        Toast.makeText(this, "Me Gusta", Toast.LENGTH_SHORT).show();
+    }
+
+    public void clickDisLike(View v){
+        Toast.makeText(this, "No me Gusta", Toast.LENGTH_SHORT).show();
+    }
+
+    public void clickWhatsapp(View v){
+        Toast.makeText(this, "Compartir en whatsapp", Toast.LENGTH_SHORT).show();
+    }
+
+    public void clickSms(View v){
+        Toast.makeText(this, "Compartir por SMS", Toast.LENGTH_SHORT).show();
+    }
+
+    public void clickMsg(View v){
+        Toast.makeText(this, "Compartir en Facebook messenger", Toast.LENGTH_SHORT).show();
+    }
+
+
 
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                // app icon in action bar clicked; goto parent activity.
                 this.finish();
                 return true;
             default:
@@ -47,4 +75,8 @@ public class ProductDetailActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void setLike() {
+
+    }
 }
