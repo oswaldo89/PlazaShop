@@ -24,7 +24,6 @@ public class ProductsPresenter implements Interface.Presenter {
         }
     }
 
-
     @Override
     public void onLoadProucts(ArrayList<Product> products) {
         if(view != null){

@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -26,14 +25,9 @@ public class ProductosFragment extends Fragment implements Interface.View, Produ
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         View v = inflater.inflate(R.layout.fragment_productos, container, false);
-
         presenter = new ProductsPresenter(this);
-
-
         initRecycler(v);
-
         return v;
     }
 
@@ -45,13 +39,11 @@ public class ProductosFragment extends Fragment implements Interface.View, Produ
         presenter.getDataProducts();
     }
 
-
     @Override
     public void showProducts(ArrayList<Product> products) {
         AdapterProductList adapter = new AdapterProductList(getActivity(), products, this);
         recycler_productos.setAdapter(adapter);
     }
-
 
     @Override
     public void onClickProductItem(Product res, int position) {
@@ -61,6 +53,4 @@ public class ProductosFragment extends Fragment implements Interface.View, Produ
         i.putExtras(extras);
         startActivity(i);
     }
-
-
 }
