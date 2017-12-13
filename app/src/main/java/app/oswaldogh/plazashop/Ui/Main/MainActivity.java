@@ -16,12 +16,12 @@ import android.view.MenuItem;
 import android.view.View;
 
 import app.oswaldogh.plazashop.R;
+import app.oswaldogh.plazashop.Ui.AboutMe.AboutFragment;
 import app.oswaldogh.plazashop.Ui.ProductAdd.ProductAddActivity;
 import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
-
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+    FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+        fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,15 +39,14 @@ public class MainActivity extends AppCompatActivity
         });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        //Se selecciona el primer elemento ( Agenda )
+
         navigationView.getMenu().getItem(0).setChecked(true);
         setFragment(0);
     }
@@ -64,7 +63,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
         return true;
     }
@@ -89,6 +87,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_cart) {
 
         } else if (id == R.id.nav_about) {
+            setFragment(2);
 
         } else if (id == R.id.nav_enter) {
 
@@ -106,10 +105,15 @@ public class MainActivity extends AppCompatActivity
             case 0:
                 ProductsFragment inboxFragment = new ProductsFragment();
                 fragmentTransaction.replace(R.id.fragment, inboxFragment);
-
+                fab.setVisibility(View.VISIBLE);
                 break;
             case 1:
-
+                fab.setVisibility(View.GONE);
+                break;
+            case 2:
+                AboutFragment aboutFragment = new AboutFragment();
+                fragmentTransaction.replace(R.id.fragment, aboutFragment);
+                fab.setVisibility(View.GONE);
                 break;
         }
         fragmentTransaction.commit();
