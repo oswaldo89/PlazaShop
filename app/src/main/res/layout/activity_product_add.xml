@@ -5,16 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#ecf0f1"
-    tools:context=".Ui.AddProduct.AddProductActivity">
+    android:background="@color/bg_page"
+    tools:context=".Ui.ProductAdd.ProductAddActivity">
 
 
     <com.oswaldogh89.picker.ImagePicker
         android:id="@+id/picker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-    </com.oswaldogh89.picker.ImagePicker>
+        android:layout_height="wrap_content"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,11 +20,7 @@
         android:gravity="center_vertical|center"
         android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/UploadImages"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:text="Subir Imagenes" />
+
     </LinearLayout>
 
 </LinearLayout>

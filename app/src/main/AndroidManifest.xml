@@ -25,9 +25,11 @@
         </activity>
         <activity
             android:name=".Ui.ProductDetail.ProductDetailActivity"
-            android:label="@string/title_activity_product_detail"
+            android:label="Detalle"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Ui.AddProduct.AddProductActivity" />
+        <activity
+            android:name=".Ui.ProductAdd.ProductAddActivity"
+            android:label="Nuevo producto"/>
     </application>
 
 </manifest>

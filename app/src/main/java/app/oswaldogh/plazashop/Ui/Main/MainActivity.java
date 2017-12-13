@@ -3,11 +3,9 @@ package app.oswaldogh.plazashop.Ui.Main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.view.View;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -15,10 +13,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
-import app.oswaldogh.plazashop.Ui.AddProduct.AddProductActivity;
-import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
 import app.oswaldogh.plazashop.R;
+import app.oswaldogh.plazashop.Ui.ProductAdd.ProductAddActivity;
+import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -34,7 +33,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, AddProductActivity.class);
+                Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
                 startActivity(i);
             }
         });
@@ -85,17 +84,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_product) {
             setFragment(0);
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_cart) {
 
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.nav_about) {
 
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_enter) {
 
         }
 

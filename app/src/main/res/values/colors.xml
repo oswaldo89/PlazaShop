@@ -3,5 +3,7 @@
     <color name="colorPrimary">#00838F</color>
     <color name="colorPrimaryDark">#006064</color>
     <color name="colorAccent">#00BCD4</color>
+    <color name="bg_page">#e6e6e6</color>
+
 
 </resources>
