@@ -1,25 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:padding="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/bg_page"
+    android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".Ui.ProductAdd.ProductAddActivity">
 
 
     <com.oswaldogh89.picker.ImagePicker
         android:id="@+id/picker"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center_vertical|center"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
+
+        <EditText
+            android:id="@+id/etNombreProducto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cuadrado"
+            android:hint="Nombre del producto"
+            android:padding="10dp" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/cuadrado"
+            android:hint="Precio"
+            android:inputType="numberDecimal"
+            android:padding="10dp" />
+
+        <Spinner
+            android:id="@+id/spinner1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/spinner"
+            android:entries="@array/country_arrays" />
+
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/cuadrado"
+            android:gravity="top"
+            android:hint="Descripcion del producto"
+            android:inputType="text|textMultiLine"
+            android:padding="10dp" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/material_button"
+            android:text="Guardar"
+            android:textColor="#fff" />
 
     </LinearLayout>
 

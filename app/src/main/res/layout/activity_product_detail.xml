@@ -76,7 +76,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="$270.00 pesos"
-                    android:textColor="#bdc3c7"
+                    android:textColor="#7f8c8d"
                     android:textSize="12dp"
                     android:textStyle="bold" />
 
@@ -111,7 +111,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="DISLIKES"
-                            android:textColor="#bdc3c7"
+                            android:textColor="#7f8c8d"
                             android:textSize="12dp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -147,7 +147,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="LIKES"
-                            android:textColor="#bdc3c7"
+                            android:textColor="#7f8c8d"
                             android:textSize="12dp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -183,7 +183,7 @@
                             android:layout_height="wrap_content"
                             android:gravity="center"
                             android:text="LOCAL"
-                            android:textColor="#bdc3c7"
+                            android:textColor="#7f8c8d"
                             android:textSize="12dp"
                             android:textStyle="bold" />
                     </LinearLayout>
@@ -198,7 +198,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
                     android:text="Cristal amigable con algunos cases que vendemos, a prueba de huellas, agua solo de manera superficial. Lo instalamos en menos de 5 minutos."
-                    android:textColor="#bdc3c7"
+                    android:textColor="#7f8c8d"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
@@ -216,7 +216,7 @@
                     android:layout_marginTop="10dp"
                     android:gravity="center"
                     android:text="Compartir"
-                    android:textColor="#bdc3c7"
+                    android:textColor="#7f8c8d"
                     android:textSize="14dp"
                     android:textStyle="bold" />
 
