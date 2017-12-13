@@ -1,0 +1,10 @@
+<resources>
+    <string name="eip_camera">Camara</string>
+    <string name="eip_gallery">Galeria</string>
+    <string name="eip_view_full_image">Ver imagen completa</string>
+    <string name="eip_remove">Eliminar</string>
+    <string name="eip_delete_all">Borrar Todas</string>
+    <string name="eip_images">Imagenes:</string>
+    <string name="eip_select_image">Seleccionar Imagen</string>
+    <string name="eip_image_options">Opciones de la imagen</string>
+</resources>

@@ -10,8 +10,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-
 import app.oswaldogh.plazashop.R;
+import static app.oswaldogh.plazashop.Tools.UtilsKt.*;
 
 public class ProductDetailActivity extends AppCompatActivity implements Interface.View {
     private FloatingActionButton btnLike, btnDislike;
@@ -43,25 +43,28 @@ public class ProductDetailActivity extends AppCompatActivity implements Interfac
 
     public void clickLike(View v){
         Toast.makeText(this, "Me Gusta", Toast.LENGTH_SHORT).show();
+        log("Me Gusta");
     }
 
     public void clickDisLike(View v){
         Toast.makeText(this, "No me Gusta", Toast.LENGTH_SHORT).show();
+        log("No me Gusta");
     }
 
     public void clickWhatsapp(View v){
         Toast.makeText(this, "Compartir en whatsapp", Toast.LENGTH_SHORT).show();
+        log("whatsapp");
     }
 
     public void clickSms(View v){
         Toast.makeText(this, "Compartir por SMS", Toast.LENGTH_SHORT).show();
+        log("sms");
     }
 
     public void clickMsg(View v){
         Toast.makeText(this, "Compartir en Facebook messenger", Toast.LENGTH_SHORT).show();
+        log("facebook");
     }
-
-
 
 
     @Override
