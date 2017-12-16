@@ -1,6 +1,8 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -90,7 +92,30 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setFragment(2);
 
         } else if (id == R.id.nav_enter) {
+            // custom dialog
+            final Dialog dialog = new Dialog(MainActivity.this);
+            dialog.setContentView(R.layout.dialog_login);
+            dialog.setTitle("Title...");
+            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
+            /*
+            // set the custom dialog components - text, image and button
+            TextView text = (TextView) dialog.findViewById(R.id.text);
+            text.setText("Android custom dialog example!");
+            ImageView image = (ImageView) dialog.findViewById(R.id.image);
+            image.setImageResource(R.drawable.ic_launcher);
+
+            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+            // if button is clicked, close the custom dialog
+            dialogButton.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+            */
+
+            dialog.show();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
