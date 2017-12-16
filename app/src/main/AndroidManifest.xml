@@ -30,6 +30,9 @@
         <activity
             android:name=".Ui.ProductAdd.ProductAddActivity"
             android:label="Nuevo producto" />
+        <activity
+            android:name=".Ui.Register.RegisterActivity"
+            android:label="Registro"></activity>
     </application>
 
 </manifest>

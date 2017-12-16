@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,24 +20,24 @@ import app.oswaldogh.plazashop.R;
 import app.oswaldogh.plazashop.Ui.AboutMe.AboutFragment;
 import app.oswaldogh.plazashop.Ui.ProductAdd.ProductAddActivity;
 import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
+import app.oswaldogh.plazashop.Ui.Register.RegisterActivity;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Interface.View {
     FloatingActionButton fab;
+    Dialog dialog;
+    MainPresenter presenter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        presenter = new MainPresenter(this);
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
-                startActivity(i);
-            }
-        });
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -47,7 +46,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
 
         navigationView.getMenu().getItem(0).setChecked(true);
         setFragment(0);
@@ -63,22 +61,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        //getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -92,11 +74,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             setFragment(2);
 
         } else if (id == R.id.nav_enter) {
-            // custom dialog
-            final Dialog dialog = new Dialog(MainActivity.this);
-            dialog.setContentView(R.layout.dialog_login);
-            dialog.setTitle("Title...");
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+            presenter.openLoginDialog();
+
 
             /*
             // set the custom dialog components - text, image and button
@@ -114,8 +93,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             });
             */
-
-            dialog.show();
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -142,5 +119,31 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
         }
         fragmentTransaction.commit();
+    }
+
+    public void onNewProduct(View v) {
+        Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
+        startActivity(i);
+    }
+
+    public void onRegister(View v) {
+        presenter.closeLoginDialog();
+        Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+        startActivity(i);
+        finish();
+    }
+
+    @Override
+    public void showLoginDialog() {
+        dialog = new Dialog(MainActivity.this);
+        dialog.setContentView(R.layout.dialog_login);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.show();
+    }
+
+    @Override
+    public void hideLoginDialog() {
+        dialog.hide();
+        dialog = null;
     }
 }
