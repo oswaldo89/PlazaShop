@@ -14,9 +14,9 @@ class ProductsPresenter internal constructor(private val view: Interface.View?) 
         this.model = ProductsModel(this)
     }
 
-    fun getDataProducts() {
+    fun getDataProducts(totalProducts: Int) {
         if (view != null) {
-            model.getProducts()
+            model.getProducts(totalProducts)
         }
     }
 

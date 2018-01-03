@@ -32,6 +32,11 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
         this.view = view;
     }
 
+    public void addItems(ArrayList<Product> products){
+        this.products.addAll(products);
+        notifyDataSetChanged();
+    }
+
     @Override
     public ListViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_recycler_item, parent, false));

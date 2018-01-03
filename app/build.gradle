@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 
 android {
+    flavorDimensions "rest"
     compileSdkVersion 26
     defaultConfig {
         applicationId "app.oswaldogh.plazashop"
@@ -15,6 +16,12 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    productFlavors {
+        production {
+            dimension "rest"
+            buildConfigField 'String', 'HOST', '"http://oswaldogh89.info/plazashop/api/"'
         }
     }
 }
@@ -32,6 +39,7 @@ dependencies {
     compile project(':osw-img-picker')
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.google.code.gson:gson:2.8.2'
+    compile 'com.malinskiy:superrecyclerview:1.1.4'
 }
 repositories {
     mavenCentral()

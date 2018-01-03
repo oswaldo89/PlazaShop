@@ -17,6 +17,6 @@ interface Interface {
     }
 
     interface Model {
-        fun getProducts()
+        fun getProducts(totalProducts: Int)
     }
 }
