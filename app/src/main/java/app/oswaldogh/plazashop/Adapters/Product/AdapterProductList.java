@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+
 import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
 
@@ -41,7 +42,7 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
 
         final Product res = products.get(position);
         Glide.with(context).load(res.getUrl()).into(holder.image);
-        holder.description.setText(res.getDescription());
+        holder.description.setText(res.getDescripcion());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

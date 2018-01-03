@@ -64,35 +64,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        int id = item.getItemId();
+        switch (item.getItemId()) {
+            case R.id.nav_product:
+                setFragment(0);
+                break;
+            /*case R.id.nav_cart:
+                break;*/
+            case R.id.nav_about:
+                setFragment(2);
+                break;
+            case R.id.nav_enter:
+                presenter.openLoginDialog();
+                /*
+                // set the custom dialog components - text, image and button
+                TextView text = (TextView) dialog.findViewById(R.id.text);
+                text.setText("Android custom dialog example!");
+                ImageView image = (ImageView) dialog.findViewById(R.id.image);
+                image.setImageResource(R.drawable.ic_launcher);
 
-        if (id == R.id.nav_product) {
-            setFragment(0);
-        } else if (id == R.id.nav_cart) {
-
-        } else if (id == R.id.nav_about) {
-            setFragment(2);
-
-        } else if (id == R.id.nav_enter) {
-            presenter.openLoginDialog();
-
-
-            /*
-            // set the custom dialog components - text, image and button
-            TextView text = (TextView) dialog.findViewById(R.id.text);
-            text.setText("Android custom dialog example!");
-            ImageView image = (ImageView) dialog.findViewById(R.id.image);
-            image.setImageResource(R.drawable.ic_launcher);
-
-            Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-            // if button is clicked, close the custom dialog
-            dialogButton.setOnClickListener(new OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
-            */
+                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
+                // if button is clicked, close the custom dialog
+                dialogButton.setOnClickListener(new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+                */
+                break;
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

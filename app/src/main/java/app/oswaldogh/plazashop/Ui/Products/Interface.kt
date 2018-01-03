@@ -1,8 +1,7 @@
 package app.oswaldogh.plazashop.Ui.Products
 
-import java.util.ArrayList
-
 import app.oswaldogh.plazashop.Entities.Product
+import java.util.*
 
 /**
  * Created by oswaldogomez on 05/12/17.
