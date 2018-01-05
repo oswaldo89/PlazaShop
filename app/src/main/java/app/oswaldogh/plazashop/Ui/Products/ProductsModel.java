@@ -19,7 +19,7 @@ public class ProductsModel implements Interface.Model {
 
     private Interface.Presenter presenter;
 
-    public ProductsModel(Interface.Presenter presenter) {
+    ProductsModel(Interface.Presenter presenter) {
         this.presenter = presenter;
     }
 
