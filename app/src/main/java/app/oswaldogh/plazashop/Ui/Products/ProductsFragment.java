@@ -4,6 +4,7 @@ package app.oswaldogh.plazashop.Ui.Products;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,6 +30,7 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_products, container, false);
+        ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Productos");
         presenter = new ProductsPresenter(this);
         initRecycler(v);
         return v;
