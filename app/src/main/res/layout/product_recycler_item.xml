@@ -2,42 +2,49 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?attr/selectableItemBackgroundBorderless"
+    android:layout_marginBottom="2dp"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp"
+    android:layout_marginTop="5dp"
+    android:background="@drawable/card"
     android:clickable="true"
     android:orientation="vertical"
+    android:paddingBottom="5dp"
     android:paddingTop="0dp">
 
     <ImageView
         android:id="@+id/product_thumb"
         android:layout_width="match_parent"
         android:layout_height="160dp"
-        android:layout_margin="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:scaleType="centerCrop" />
 
     <TextView
-        android:id="@+id/listWork_description"
+        android:id="@+id/descriptionProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/description"
-        android:layout_alignStart="@+id/description"
-        android:layout_below="@+id/description"
-        android:text="Prados del Rey - 87 vistas"
+        android:layout_alignLeft="@+id/nameProduct"
+        android:layout_alignStart="@+id/nameProduct"
+        android:layout_below="@+id/nameProduct"
+        android:text="Descripcion un poco mas larga del producto"
         android:textSize="10sp" />
 
     <TextView
-        android:id="@+id/description"
+        android:id="@+id/nameProduct"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/product_thumb"
         android:layout_alignStart="@+id/product_thumb"
         android:layout_below="@+id/product_thumb"
-        android:text="Ama de Casa Santa Catarina"
+        android:layout_marginLeft="10dp"
+        android:text="Nombre del Producto"
         android:textSize="12sp"
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/listWork_amount"
+        android:id="@+id/txtPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignEnd="@+id/product_thumb"
@@ -48,17 +55,6 @@
         android:padding="5sp"
         android:text="$120.00"
         android:textColor="#fff"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/listWork_time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/description"
-        android:layout_alignEnd="@+id/product_thumb"
-        android:layout_alignRight="@+id/product_thumb"
-        android:text="Hace 3 hrs"
-        android:textSize="12sp"
         android:textStyle="bold" />
 
 </RelativeLayout>

@@ -21,7 +21,7 @@
 
 
         <EditText
-            android:id="@+id/etNombreProducto"
+            android:id="@+id/txtNombreProducto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -30,6 +30,7 @@
             android:padding="10dp" />
 
         <EditText
+            android:id="@+id/txtPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"

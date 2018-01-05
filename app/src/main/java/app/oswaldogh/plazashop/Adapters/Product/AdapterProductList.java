@@ -32,7 +32,7 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
         this.view = view;
     }
 
-    public void addItems(ArrayList<Product> products){
+    public void addItems(ArrayList<Product> products) {
         this.products.addAll(products);
         notifyDataSetChanged();
     }
@@ -42,12 +42,15 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
         return new ListViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.product_recycler_item, parent, false));
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(ListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final Product res = products.get(position);
-        Glide.with(context).load(res.getUrl()).into(holder.image);
+        Glide.with(context).load("https://http2.mlstatic.com/escudo-protector-vidrio-templado-celulares-iphone-5-5s-5c-D_NQ_NP_12446-MCO20060498688_032014-F.jpg").into(holder.image);
+        holder.name.setText(res.getNombre());
         holder.description.setText(res.getDescripcion());
+        holder.price.setText("$" + res.getPrecio());
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -62,13 +65,17 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
     }
 
     static class ListViewHolder extends RecyclerView.ViewHolder {
+        TextView name;
         TextView description;
+        TextView price;
         ImageView image;
 
         ListViewHolder(View itemView) {
             super(itemView);
             image = itemView.findViewById(R.id.product_thumb);
-            description = itemView.findViewById(R.id.description);
+            name = itemView.findViewById(R.id.nameProduct);
+            description = itemView.findViewById(R.id.descriptionProduct);
+            price = itemView.findViewById(R.id.txtPrice);
         }
     }
 
