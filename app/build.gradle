@@ -21,7 +21,7 @@ android {
     productFlavors {
         production {
             dimension "rest"
-            buildConfigField 'String', 'HOST', '"http://oswaldogh89.info/plazashop/api/"'
+            buildConfigField 'String', 'HOST', '"http://oswaldogh89.info/plazashop/api"'
         }
     }
 }

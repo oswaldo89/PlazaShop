@@ -4,4 +4,5 @@ import cz.msebera.android.httpclient.Header;
 
 public interface RestListener{
     void onSuccess(int statusCode, Header[] headers, String response);
+    void onError(int statusCode, Header[] headers, String response);
 }

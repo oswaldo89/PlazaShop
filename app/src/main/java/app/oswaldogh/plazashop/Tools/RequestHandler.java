@@ -2,6 +2,7 @@ package app.oswaldogh.plazashop.Tools;
 
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -39,8 +40,8 @@ public class RequestHandler {
     }
 
     // You can add more parameters if you need here.
-    public void get(String url, final RestListener listener) {
-        client.get(url, new AsyncHttpResponseHandler() {
+    public void get(final String url, RequestParams params, final RestListener listener) {
+        client.get(url, params, new AsyncHttpResponseHandler() {
 
             @Override
             public void onStart() {
@@ -53,8 +54,36 @@ public class RequestHandler {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                String error = new String(errorResponse);
-                log(error);
+                log("**********************");
+                log(url);
+                log(new String(errorResponse));
+                listener.onError(statusCode, headers, new String(errorResponse));
+            }
+
+            @Override
+            public void onRetry(int retryNo) {
+            }
+        });
+    }
+
+    public void post(final String url, RequestParams params, final RestListener listener) {
+        client.post(url, params, new AsyncHttpResponseHandler() {
+
+            @Override
+            public void onStart() {
+            }
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, byte[] response) {
+                listener.onSuccess(statusCode, headers, new String(response));
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
+                log("**********************");
+                log(url);
+                log(new String(errorResponse));
+                listener.onError(statusCode, headers, new String(errorResponse));
             }
 
             @Override

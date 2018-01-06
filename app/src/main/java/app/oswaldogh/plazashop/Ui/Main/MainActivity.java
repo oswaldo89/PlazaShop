@@ -1,6 +1,7 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -15,6 +16,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import app.oswaldogh.plazashop.R;
 import app.oswaldogh.plazashop.Ui.AboutMe.AboutFragment;
@@ -75,22 +78,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_enter:
                 presenter.openLoginDialog();
-                /*
-                // set the custom dialog components - text, image and button
-                TextView text = (TextView) dialog.findViewById(R.id.text);
-                text.setText("Android custom dialog example!");
-                ImageView image = (ImageView) dialog.findViewById(R.id.image);
-                image.setImageResource(R.drawable.ic_launcher);
-
-                Button dialogButton = (Button) dialog.findViewById(R.id.dialogButtonOK);
-                // if button is clicked, close the custom dialog
-                dialogButton.setOnClickListener(new OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-                */
                 break;
         }
 
@@ -136,13 +123,41 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void showLoginDialog() {
         dialog = new Dialog(MainActivity.this);
         dialog.setContentView(R.layout.dialog_login);
+        final EditText txtUser = dialog.findViewById(R.id.txtUser);
+        final EditText txtPassword = dialog.findViewById(R.id.txtPassword);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+        dialog.findViewById(R.id.btnLogin).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                presenter.doLogin(txtUser.getText().toString(), txtPassword.getText().toString());
+            }
+        });
         dialog.show();
+    }
+
+    @Override
+    public void loginFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void loginSucces() {
+
     }
 
     @Override
     public void hideLoginDialog() {
         dialog.hide();
         dialog = null;
+    }
+
+    @Override
+    public Context getAppContext() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public Context getActivityContext() {
+        return this;
     }
 }

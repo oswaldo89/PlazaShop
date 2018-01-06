@@ -30,12 +30,17 @@ public class ProductsModel implements Interface.Model {
 
         //Obtains the paginate products and return callback when request its ready.
         RequestHandler handler = RequestHandler.getInstance();
-        handler.get(BuildConfig.HOST + "product_list/" + totalProducts, new RestListener() {
+        handler.get(BuildConfig.HOST + "/product_list/" + totalProducts, null, new RestListener() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String data) {
                 Gson g = new Gson();
                 ArrayList<Product> products = new ArrayList<>(Arrays.asList(g.fromJson(data, Product[].class)));
                 presenter.onLoadProucts(products);
+            }
+
+            @Override
+            public void onError(int statusCode, Header[] headers, String response) {
+                
             }
         });
     }
