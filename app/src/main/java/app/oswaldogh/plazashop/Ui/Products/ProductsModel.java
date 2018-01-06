@@ -25,6 +25,9 @@ public class ProductsModel implements Interface.Model {
 
     @Override
     public void getProducts(int totalProducts) {
+
+        //String tokenApi = PreferencesHandler.getTokenApi(this.presenter.getAppContext());
+
         //Obtains the paginate products and return callback when request its ready.
         RequestHandler handler = RequestHandler.getInstance();
         handler.get(BuildConfig.HOST + "product_list/" + totalProducts, new RestListener() {

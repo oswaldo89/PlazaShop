@@ -1,6 +1,7 @@
 package app.oswaldogh.plazashop.Ui.Products;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -58,10 +59,20 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
                 adapter.addItems(products);
             }
             rv_productList.setAdapter(adapter);
-        }else if(products.size() == 0 && adapter == null){//if the adapter is null and dont exist any products, shows empty view layout.
+        } else if (products.size() == 0 && adapter == null) {//if the adapter is null and dont exist any products, shows empty view layout.
             rv_productList.getEmptyView();
         }
         rv_productList.hideMoreProgress();
+    }
+
+    @Override
+    public Context getAppContext() {
+        return getActivity().getApplicationContext();
+    }
+
+    @Override
+    public Context getActivityContext() {
+        return getActivity();
     }
 
     @Override
