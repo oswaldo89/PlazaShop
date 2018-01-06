@@ -14,21 +14,25 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import app.oswaldogh.plazashop.R;
+import app.oswaldogh.plazashop.Tools.PreferencesHandler;
 import app.oswaldogh.plazashop.Ui.AboutMe.AboutFragment;
 import app.oswaldogh.plazashop.Ui.ProductAdd.ProductAddActivity;
 import app.oswaldogh.plazashop.Ui.Products.ProductsFragment;
 import app.oswaldogh.plazashop.Ui.Register.RegisterActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, Interface.View {
-    FloatingActionButton fab;
-    Dialog dialog;
-    MainPresenter presenter;
+    private NavigationView navigationView;
+    Menu nav_Menu;
+    private FloatingActionButton fab;
+    private Dialog dialog;
+    private MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,23 +51,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
+        navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        nav_Menu = navigationView.getMenu();
 
         navigationView.getMenu().getItem(0).setChecked(true);
         setFragment(0);
     }
 
     @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+    public Context getAppContext() {
+        return getApplicationContext();
     }
 
+    @Override
+    public Context getActivityContext() {
+        return this;
+    }
+
+    //region Fragment Navigation
+    //---------------------------------------------------------------------------------------
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -71,13 +78,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_product:
                 setFragment(0);
                 break;
-            /*case R.id.nav_cart:
-                break;*/
             case R.id.nav_about:
                 setFragment(2);
                 break;
             case R.id.nav_enter:
                 presenter.openLoginDialog();
+                break;
+            case R.id.nav_exit:
+                presenter.logoutApplication();
                 break;
         }
 
@@ -107,11 +115,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
     }
 
-    public void onNewProduct(View v) {
-        Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
-        startActivity(i);
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
     }
+    //---------------------------------------------------------------------------------------
+    //endregion
 
+    //region Login Implementation
+    //---------------------------------------------------------------------------------------
     public void onRegister(View v) {
         presenter.closeLoginDialog();
         Intent i = new Intent(MainActivity.this, RegisterActivity.class);
@@ -136,28 +153,60 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
-    public void loginFailed(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void loginSucces() {
-
-    }
-
-    @Override
     public void hideLoginDialog() {
         dialog.hide();
         dialog = null;
     }
 
     @Override
-    public Context getAppContext() {
-        return getApplicationContext();
+    public void loginFailed(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public Context getActivityContext() {
-        return this;
+    public void loginSucces() {
+        dialog.hide();
+
+        //Deshabilitamos el boton de "Entrar" en el navigationDrawer y Hablitamos "Salir"
+        enableButtonLogout();
+        Toast.makeText(this, "Ingreso correctamente", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void logout() {
+
+        //Reset token
+        PreferencesHandler.setTokenApi("", this);
+
+        //Enable button to login.
+        enableButtonLogin();
+        Toast.makeText(this, "Salio correctamente", Toast.LENGTH_SHORT).show();
+    }
+
+    private void enableButtonLogout() {
+        nav_Menu.findItem(R.id.nav_enter).setVisible(false);
+        nav_Menu.findItem(R.id.nav_exit).setVisible(true);
+    }
+
+    private void enableButtonLogin() {
+        nav_Menu.findItem(R.id.nav_enter).setVisible(true);
+        nav_Menu.findItem(R.id.nav_exit).setVisible(false);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (!PreferencesHandler.getTokenApi(this).equals(""))
+            enableButtonLogout();
+    }
+
+    //---------------------------------------------------------------------------------------
+    //endregion
+
+    public void onNewProduct(View v) {
+        Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
+        startActivity(i);
+    }
+
 }

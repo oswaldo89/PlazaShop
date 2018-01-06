@@ -22,6 +22,12 @@
             android:id="@+id/nav_enter"
             android:icon="@drawable/ic_enter"
             android:title="Entrar" />
+
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_exit"
+            android:title="Salir"
+            android:visible="false" />
     </group>
 
 

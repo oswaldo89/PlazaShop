@@ -10,6 +10,7 @@ public interface Interface {
     interface View {
         void loginFailed(String message);
         void loginSucces();
+        void logout();
         void showLoginDialog();
         void hideLoginDialog();
         Context getAppContext();

@@ -41,18 +41,19 @@
             android:layout_marginTop="10dp"
             android:background="@drawable/cuadrado"
             android:hint="Contraseña"
+            android:inputType="textPassword"
             android:padding="10dp" />
 
         <LinearLayout
-            android:gravity="right"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:gravity="right"
             android:padding="20dp">
 
             <TextView
-                android:onClick="onRegister"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:onClick="onRegister"
                 android:text="Registrarme"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -87,11 +88,11 @@
         android:typeface="sans" />
 
     <ImageView
-        android:layout_marginTop="4dp"
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="4dp"
         app:srcCompat="@drawable/ic_iconapp" />
 
 

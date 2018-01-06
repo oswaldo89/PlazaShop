@@ -20,6 +20,11 @@ class MainPresenter implements Interface.Presenter {
             view.showLoginDialog();
     }
 
+    void logoutApplication() {
+        if (view != null)
+            view.logout();
+    }
+
     void closeLoginDialog() {
         if (view != null)
             view.hideLoginDialog();
