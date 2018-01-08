@@ -5,16 +5,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.oswaldogh89.picker.ImagePicker;
 
 import app.oswaldogh.plazashop.R;
 import app.oswaldogh.plazashop.Tools.Permissions;
 
+import static app.oswaldogh.plazashop.Tools.UtilsKt.log;
+
 public class ProductAddActivity extends AppCompatActivity implements Interface.View {
     ImagePicker picker;
-    EditText txtNombreProducto, txtPrice;
+    EditText txtNameProduct, txtPrice, txtDescriptionProduct;
+    Spinner spnCategories;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,13 +34,27 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
     }
 
     private void initViews() {
-        txtNombreProducto = findViewById(R.id.txtNombreProducto);
+        txtNameProduct = findViewById(R.id.txtNameProduct);
         txtPrice = findViewById(R.id.txtPrice);
-        picker = findViewById(R.id.picker);
+        txtDescriptionProduct = findViewById(R.id.txtDescriptionProduct);
+        spnCategories = findViewById(R.id.spnCategories);
 
+        picker = findViewById(R.id.picker);
         picker.setMainactivity(ProductAddActivity.this);
         picker.SetBorderImageColor("#075e55");
         picker.enableDelateAll(true);
+    }
+
+    public void saveProduct(View view) {
+        String name = txtNameProduct.getText().toString();
+        float price = txtPrice.getText().toString().equals("") ? 0.0f : Float.parseFloat(txtPrice.getText().toString());
+        String description = txtDescriptionProduct.getText().toString();
+        int category = spnCategories.getSelectedItemPosition();
+
+        log("name : " + name);
+        log("precio : " + price);
+        log("description : " + description);
+        log("category : " + category);
     }
 
     @Override

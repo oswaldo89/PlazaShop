@@ -51,18 +51,30 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
     }
 
     @Override
-    public void showProducts(ArrayList<Product> products) {
-        if (products.size() != 0) {
-            if (adapter == null) { //only enter the first time, when adapter is null and empty.
-                adapter = new AdapterProductList(getActivity(), products, this);
-            } else { //it is called only when the adapter has products
-                adapter.addItems(products);
-            }
-            rv_productList.setAdapter(adapter);
-        } else if (products.size() == 0 && adapter == null) {//if the adapter is null and dont exist any products, shows empty view layout.
-            rv_productList.getEmptyView();
-        }
+    public void createListProducts(ArrayList<Product> products) {
+        adapter = new AdapterProductList(getActivity(), products, this);
+        rv_productList.setAdapter(adapter);
+    }
+
+    @Override
+    public void addMoreProductsToList(ArrayList<Product> products) {
+        adapter.addItems(products);
+        rv_productList.setAdapter(adapter);
+    }
+
+    @Override
+    public void hideLoadMoreProgress() {
         rv_productList.hideMoreProgress();
+    }
+
+    @Override
+    public void setProductListEmpty() {
+        rv_productList.getEmptyView();
+    }
+
+    @Override
+    public boolean adapterIsNull() {
+        return adapter == null;
     }
 
     @Override

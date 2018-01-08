@@ -13,7 +13,11 @@ import app.oswaldogh.plazashop.Entities.Product;
 public interface Interface {
 
     interface View {
-        void showProducts(ArrayList<Product> products);
+        void createListProducts(ArrayList<Product> products);
+        void addMoreProductsToList(ArrayList<Product> products);
+        void hideLoadMoreProgress();
+        void setProductListEmpty();
+        boolean adapterIsNull();
         Context getAppContext();
         Context getActivityContext();
     }

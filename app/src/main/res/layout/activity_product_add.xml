@@ -21,7 +21,7 @@
 
 
         <EditText
-            android:id="@+id/txtNombreProducto"
+            android:id="@+id/txtNameProduct"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
@@ -40,7 +40,7 @@
             android:padding="10dp" />
 
         <Spinner
-            android:id="@+id/spinner1"
+            android:id="@+id/spnCategories"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
@@ -48,7 +48,7 @@
             android:entries="@array/country_arrays" />
 
         <EditText
-            android:id="@+id/edit_text"
+            android:id="@+id/txtDescriptionProduct"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="7dp"
@@ -59,7 +59,8 @@
             android:padding="10dp" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnSaveProduct"
+            android:onClick="saveProduct"
             style="?android:attr/borderlessButtonStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

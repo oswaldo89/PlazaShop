@@ -27,7 +27,16 @@ public final class ProductsPresenter implements Interface.Presenter {
 
     public void onLoadProucts(ArrayList<Product> products) {
         if (this.view != null) {
-            this.view.showProducts(products);
+            if (this.view.adapterIsNull()) {
+                this.view.createListProducts(products);
+            } else {
+                if (products.size() > 0)
+                    this.view.addMoreProductsToList(products);
+            }
+            if (products.size() == 0 && this.view.adapterIsNull()) {
+                this.view.setProductListEmpty();
+            }
+            this.view.hideLoadMoreProgress();
         }
     }
 
