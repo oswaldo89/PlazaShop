@@ -33,6 +33,11 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
         this.view = view;
     }
 
+    public void clear() {
+        this.products.clear();
+        notifyDataSetChanged();
+    }
+
     public void addItems(ArrayList<Product> products) {
         this.products.addAll(products);
         notifyDataSetChanged();

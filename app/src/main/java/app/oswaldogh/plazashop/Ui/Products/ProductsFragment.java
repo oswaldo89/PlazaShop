@@ -20,6 +20,7 @@ import app.oswaldogh.plazashop.Adapters.Product.AdapterProductList;
 import app.oswaldogh.plazashop.Adapters.Product.ProductItemView;
 import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
+import app.oswaldogh.plazashop.Tools.PreferencesHandler;
 import app.oswaldogh.plazashop.Ui.ProductDetail.ProductDetailActivity;
 
 public class ProductsFragment extends Fragment implements Interface.View, ProductItemView {
@@ -94,5 +95,20 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
         extras.putString("url_image", item.getUrl());
         i.putExtras(extras);
         startActivity(i);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (rv_productList.getAdapter() != null && PreferencesHandler.getReloadList(getActivity())) {
+            PreferencesHandler.setReloadList(false, getActivity());
+            adapter = null;
+            rv_productList.showProgress();
+            rv_productList.hideMoreProgress();
+            presenter.getDataProducts(0);
+        }
+
+
     }
 }

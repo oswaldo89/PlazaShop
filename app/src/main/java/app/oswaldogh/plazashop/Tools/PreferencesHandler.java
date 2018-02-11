@@ -19,4 +19,16 @@ public class PreferencesHandler {
         SharedPreferences prfs = context.getSharedPreferences("AUTHENTICATION_FILE_NAME", Context.MODE_PRIVATE);
         return prfs.getString("token_api", "");
     }
+
+    public static void setReloadList(boolean reload, Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("AUTHENTICATION_FILE_NAME", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("reload", reload);
+        editor.apply();
+    }
+
+    public static boolean getReloadList(Context context) {
+        SharedPreferences prfs = context.getSharedPreferences("AUTHENTICATION_FILE_NAME", Context.MODE_PRIVATE);
+        return prfs.getBoolean("reload", false);
+    }
 }

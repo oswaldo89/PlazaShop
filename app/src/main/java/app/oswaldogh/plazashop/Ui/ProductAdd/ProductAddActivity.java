@@ -24,6 +24,7 @@ import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
 import app.oswaldogh.plazashop.Tools.Image;
 import app.oswaldogh.plazashop.Tools.Permissions;
+import app.oswaldogh.plazashop.Tools.PreferencesHandler;
 
 public class ProductAddActivity extends AppCompatActivity implements Interface.View {
     private ImagePicker picker;
@@ -39,7 +40,7 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new ProductAddPresenter(this);
 
-        String[] PERMISSIONS = { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE };
+        String[] PERMISSIONS = {Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
         Permissions.enablePermissions(this, PERMISSIONS);
 
         initViews();
@@ -85,6 +86,7 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
 
     @Override
     public void productSaved(String info) {
+        PreferencesHandler.setReloadList(true, this);
         Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
         finish();
     }
