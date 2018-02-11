@@ -1,6 +1,7 @@
 package app.oswaldogh.plazashop.Ui.ProductAdd;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -29,6 +30,7 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
     private EditText txtNameProduct, txtPrice, txtDescriptionProduct, txtLocalNumber;
     private Spinner spnCategories;
     private ProductAddPresenter presenter;
+    private ProgressDialog progressNewProduct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,11 +39,7 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         presenter = new ProductAddPresenter(this);
 
-        String[] PERMISSIONS = {
-                Manifest.permission.CAMERA,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE
-        };
+        String[] PERMISSIONS = { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE };
         Permissions.enablePermissions(this, PERMISSIONS);
 
         initViews();
@@ -61,7 +59,6 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
     }
 
     public void saveProduct(View view) {
-
         Product product = new Product();
 
         String mName = txtNameProduct.getText().toString();
@@ -82,35 +79,33 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
             String pathImg = "content://media/" + entry.getValue().toString();
             imagesModel.add(new File(Image.compressImage(pathImg, ProductAddActivity.this)));
         }
-
         product.setImage(imagesModel);
-
         presenter.saveProduct(product);
     }
 
     @Override
-    public void uploadError(String message) {
+    public void productSaved(String info) {
+        Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
+        finish();
+    }
 
+    @Override
+    public void uploadError(String message) {
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void showLoading() {
-
+        progressNewProduct = new ProgressDialog(this);
+        progressNewProduct.setTitle("PlazaShop");
+        progressNewProduct.setMessage("Estamos agregando el producto...");
+        progressNewProduct.setCancelable(false);
+        progressNewProduct.show();
     }
 
     @Override
     public void hideLoading() {
-
-    }
-
-    @Override
-    public void productSaved(String info, boolean status) {
-        if (status) {
-            Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-            finish();
-        } else {
-            Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-        }
+        progressNewProduct.hide();
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {

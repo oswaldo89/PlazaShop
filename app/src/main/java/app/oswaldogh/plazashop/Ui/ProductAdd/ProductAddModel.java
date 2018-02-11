@@ -58,7 +58,7 @@ public class ProductAddModel implements Interface.Model {
 
             @Override
             public void onError(int statusCode, Header[] headers, String response) {
-                log(response);
+                presenter.onErrorUpload();
             }
         });
     }

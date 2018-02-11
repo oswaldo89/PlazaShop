@@ -13,11 +13,12 @@ public interface Interface {
         void uploadError(String message);
         void showLoading();
         void hideLoading();
-        void productSaved(String info, boolean status);
+        void productSaved(String info);
         Context getActivityContext();
     }
     interface Presenter{
         void onSaveProduct();
+        void onErrorUpload();
         Context getAppContext();
     }
     interface Model{

@@ -19,6 +19,7 @@ public class ProductAddPresenter implements Interface.Presenter {
 
     void saveProduct(Product product) {
         if (view != null) {
+            view.showLoading();
             model.saveProduct(product);
         }
     }
@@ -26,7 +27,16 @@ public class ProductAddPresenter implements Interface.Presenter {
     @Override
     public void onSaveProduct() {
         if (view != null) {
-            view.productSaved("Producto guardado correctamente", true);
+            view.hideLoading();
+            view.productSaved("Producto guardado correctamente");
+        }
+    }
+
+    @Override
+    public void onErrorUpload() {
+        if (view != null) {
+            view.hideLoading();
+            view.uploadError("Ocurrio un error al guardar su producto, intente nuevamente.");
         }
     }
 
