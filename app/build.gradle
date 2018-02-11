@@ -22,6 +22,7 @@ android {
         production {
             dimension "rest"
             buildConfigField 'String', 'HOST', '"http://oswaldogh89.info/plazashop/api"'
+            buildConfigField 'String', 'STORAGE', '"http://oswaldogh89.info/plazashop/storage/app/"'
         }
     }
 }

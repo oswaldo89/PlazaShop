@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
+import app.oswaldogh.plazashop.BuildConfig;
 import app.oswaldogh.plazashop.Entities.Product;
 import app.oswaldogh.plazashop.R;
 
@@ -47,7 +48,11 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
     public void onBindViewHolder(ListViewHolder holder, @SuppressLint("RecyclerView") final int position) {
 
         final Product res = products.get(position);
-        Glide.with(context).load("https://http2.mlstatic.com/escudo-protector-vidrio-templado-celulares-iphone-5-5s-5c-D_NQ_NP_12446-MCO20060498688_032014-F.jpg").into(holder.image);
+
+        if (res.getPhotos().size() > 0) {
+            Glide.with(context).load(BuildConfig.STORAGE + res.getPhoto(0).getFilename()).into(holder.image);
+        }
+
         holder.name.setText(res.getNombre());
         holder.description.setText(res.getDescripcion());
         holder.price.setText("$" + res.getPrecio());

@@ -16,7 +16,19 @@ public class Product {
     private String url;
     private int categoria;
     private int views;
+    private List<Image> photos;
     private List<File> image;
+
+    public Image getPhoto(int position){
+        return photos.get(position);
+    }
+    public List<Image> getPhotos() {
+        return photos;
+    }
+
+    public void setPhotos(List<Image> photos) {
+        this.photos = photos;
+    }
 
     public int getCategoria() {
         return categoria;
