@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.malinskiy.superrecyclerview.OnMoreListener;
 import com.malinskiy.superrecyclerview.SuperRecyclerView;
 
@@ -33,6 +34,7 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_products, container, false);
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Productos");
+        PreferencesHandler.setReloadList(false, getActivity());
         presenter = new ProductsPresenter(this);
         initRecycler(v);
         return v;
@@ -90,10 +92,10 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
 
     @Override
     public void onClickProductItem(Product item, int position) {
+        Gson gson = new Gson();
+        Product product = adapter.getItem(position);
         Intent i = new Intent(getContext(), ProductDetailActivity.class);
-        Bundle extras = new Bundle();
-        extras.putString("url_image", item.getUrl());
-        i.putExtras(extras);
+        i.putExtra("ProductDetail", gson.toJson(product));
         startActivity(i);
     }
 

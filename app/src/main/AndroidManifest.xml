@@ -33,7 +33,10 @@
             android:label="Nuevo producto" />
         <activity
             android:name=".Ui.Register.RegisterActivity"
-            android:label="Registro"></activity>
+            android:label="Registro" />
+        <activity
+            android:name=".Ui.ImageViewer.ImageViewerActivity"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
     </application>
 
 </manifest>

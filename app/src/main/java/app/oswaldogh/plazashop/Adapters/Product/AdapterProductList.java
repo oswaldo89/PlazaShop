@@ -33,9 +33,8 @@ public class AdapterProductList extends RecyclerView.Adapter<AdapterProductList.
         this.view = view;
     }
 
-    public void clear() {
-        this.products.clear();
-        notifyDataSetChanged();
+    public Product getItem(int position) {
+        return products.get(position);
     }
 
     public void addItems(ArrayList<Product> products) {
