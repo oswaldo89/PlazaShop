@@ -1,5 +1,7 @@
 package app.oswaldogh.plazashop.Tools;
 
+import android.content.Context;
+
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -25,18 +27,8 @@ public class RequestHandler {
         client.addHeader("Authorization", "Bearer " + token_api);
     }
 
-    public static RequestHandler getInstance() {
-        if (instance == null) {
-            instance = new RequestHandler();
-        }
-        return instance;
-    }
-
     public static RequestHandler getInstance(String token_api) {
-        if (instance == null) {
-            instance = new RequestHandler(token_api);
-        }
-        return instance;
+        return new RequestHandler(token_api);
     }
 
     // You can add more parameters if you need here.
@@ -66,9 +58,10 @@ public class RequestHandler {
         });
     }
 
-    public void post(final String url, RequestParams params, final RestListener listener) {
-        client.post(url, params, new AsyncHttpResponseHandler() {
+    public void post(Context context, final String url, RequestParams params, final RestListener listener) {
 
+
+        client.post(context, url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
             }
@@ -80,9 +73,6 @@ public class RequestHandler {
 
             @Override
             public void onFailure(int statusCode, Header[] headers, byte[] errorResponse, Throwable e) {
-                log("**********************");
-                log(url);
-                log(new String(errorResponse));
                 listener.onError(statusCode, headers, new String(errorResponse));
             }
 
@@ -90,6 +80,7 @@ public class RequestHandler {
             public void onRetry(int retryNo) {
             }
         });
+
     }
 }
 

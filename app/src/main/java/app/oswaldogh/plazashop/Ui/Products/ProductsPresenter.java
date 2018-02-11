@@ -11,8 +11,8 @@ import app.oswaldogh.plazashop.Entities.Product;
  */
 
 public final class ProductsPresenter implements Interface.Presenter {
-    private final Interface.Model model;
-    private final Interface.View view;
+    private Interface.Model model;
+    private Interface.View view;
 
     ProductsPresenter(Interface.View view) {
         this.view = view;

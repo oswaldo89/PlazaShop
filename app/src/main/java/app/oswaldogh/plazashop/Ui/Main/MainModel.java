@@ -28,8 +28,8 @@ public class MainModel implements Interface.Model {
         params.put("email", user);
         params.put("password", pass);
 
-        RequestHandler handler = RequestHandler.getInstance();
-        handler.post(BuildConfig.HOST + "/login", params, new RestListener() {
+        RequestHandler handler = RequestHandler.getInstance("");
+        handler.post(presenter.getAppContext(),BuildConfig.HOST + "/login", params, new RestListener() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String data) {
                 Gson g = new Gson();

@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:background="@drawable/cuadrado"
-            android:hint="Nombre del producto"
+            android:hint="Nombre del producto ( requerido )"
             android:padding="10dp" />
 
         <EditText
@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="7dp"
             android:background="@drawable/cuadrado"
-            android:hint="Precio"
+            android:hint="Precio ( opcional )"
             android:inputType="numberDecimal"
             android:padding="10dp" />
 
@@ -54,8 +54,18 @@
             android:layout_marginTop="7dp"
             android:background="@drawable/cuadrado"
             android:gravity="top"
-            android:hint="Descripcion del producto"
+            android:hint="Descripcion del producto ( opcional )"
             android:inputType="text|textMultiLine"
+            android:padding="10dp" />
+
+        <EditText
+            android:id="@+id/txtLocal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:background="@drawable/cuadrado"
+            android:hint="Numero de Local ( requerido )"
+            android:inputType="number"
             android:padding="10dp" />
 
         <Button
