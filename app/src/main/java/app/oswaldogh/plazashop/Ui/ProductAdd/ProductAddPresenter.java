@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.ProductAdd;
 
-import android.content.Context;
-
 import app.oswaldogh.plazashop.Entities.Product;
 
 /**
@@ -41,10 +39,7 @@ public class ProductAddPresenter implements Interface.Presenter {
     }
 
     @Override
-    public Context getAppContext() {
-        if (this.view != null) {
-            return this.view.getActivityContext();
-        }
-        return null;
+    public String onLoadTokenApi() {
+        return view.tokenApi();
     }
 }

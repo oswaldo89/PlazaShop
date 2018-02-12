@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Tools;
 
-import android.content.Context;
-
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -58,12 +56,13 @@ public class RequestHandler {
         });
     }
 
-    public void post(Context context, final String url, RequestParams params, final RestListener listener) {
+    public void post(final String url, RequestParams params, final RestListener listener) {
 
 
-        client.post(context, url, params, new AsyncHttpResponseHandler() {
+        client.post(url, params, new AsyncHttpResponseHandler() {
             @Override
             public void onStart() {
+
             }
 
             @Override

@@ -1,7 +1,6 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -57,16 +56,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.getMenu().getItem(0).setChecked(true);
         setFragment(0);
-    }
-
-    @Override
-    public Context getAppContext() {
-        return getApplicationContext();
-    }
-
-    @Override
-    public Context getActivityContext() {
-        return this;
     }
 
     //region Fragment Navigation
@@ -156,6 +145,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void hideLoginDialog() {
         dialog.hide();
         dialog = null;
+    }
+
+    @Override
+    public void setTokenApi(String tokenApi) {
+        PreferencesHandler.setTokenApi(tokenApi, this);
     }
 
     @Override

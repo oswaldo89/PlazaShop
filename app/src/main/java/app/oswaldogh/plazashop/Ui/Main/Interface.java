@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
-import android.content.Context;
-
 /**
  * Created by oswaldogh89 on 16/12/17.
  */
@@ -13,16 +11,13 @@ public interface Interface {
         void logout();
         void showLoginDialog();
         void hideLoginDialog();
-        Context getAppContext();
-        Context getActivityContext();
+        void setTokenApi(String tokenApi);
     }
 
     interface Presenter {
-        //void openLoginDialog();
-        //void closeLoginDialog();
         void loginError(String response);
         void loginSucces();
-        Context getAppContext();
+        void onSaveTokenApi(String tokenApi);
     }
 
     interface Model{

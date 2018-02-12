@@ -2,7 +2,6 @@ package app.oswaldogh.plazashop.Ui.ProductAdd;
 
 import android.Manifest;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -136,7 +135,7 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
     }
 
     @Override
-    public Context getActivityContext() {
-        return this;
+    public String tokenApi(){
+        return PreferencesHandler.getTokenApi(this);
     }
 }

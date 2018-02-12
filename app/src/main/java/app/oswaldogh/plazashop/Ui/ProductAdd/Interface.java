@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.ProductAdd;
 
-import android.content.Context;
-
 import app.oswaldogh.plazashop.Entities.Product;
 
 /**
@@ -14,12 +12,12 @@ public interface Interface {
         void showLoading();
         void hideLoading();
         void productSaved(String info);
-        Context getActivityContext();
+        String tokenApi();
     }
     interface Presenter{
         void onSaveProduct();
         void onErrorUpload();
-        Context getAppContext();
+        String onLoadTokenApi();
     }
     interface Model{
         void saveProduct(Product product);

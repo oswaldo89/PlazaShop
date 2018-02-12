@@ -5,7 +5,6 @@ import com.loopj.android.http.RequestParams;
 
 import app.oswaldogh.plazashop.BuildConfig;
 import app.oswaldogh.plazashop.Entities.Credentials;
-import app.oswaldogh.plazashop.Tools.PreferencesHandler;
 import app.oswaldogh.plazashop.Tools.RequestHandler;
 import app.oswaldogh.plazashop.Tools.RestListener;
 import cz.msebera.android.httpclient.Header;
@@ -29,17 +28,16 @@ public class MainModel implements Interface.Model {
         params.put("password", pass);
 
         RequestHandler handler = RequestHandler.getInstance("");
-        handler.post(presenter.getAppContext(),BuildConfig.HOST + "/login", params, new RestListener() {
+        handler.post(BuildConfig.HOST + "/login", params, new RestListener() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String data) {
                 Gson g = new Gson();
                 Credentials credentials = g.fromJson(data, Credentials.class);
                 String token = credentials.getToken();
-                if (!token.equals("")){
-                    PreferencesHandler.setTokenApi(token, presenter.getAppContext());
+                if (!token.equals("")) {
+                    presenter.onSaveTokenApi(token);
                     presenter.loginSucces();
                 }
-
             }
 
             @Override

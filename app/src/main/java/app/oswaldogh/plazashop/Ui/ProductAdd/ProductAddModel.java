@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 
 import app.oswaldogh.plazashop.BuildConfig;
 import app.oswaldogh.plazashop.Entities.Product;
-import app.oswaldogh.plazashop.Tools.PreferencesHandler;
 import app.oswaldogh.plazashop.Tools.RequestHandler;
 import app.oswaldogh.plazashop.Tools.RestListener;
 import cz.msebera.android.httpclient.Header;
@@ -27,9 +26,8 @@ public class ProductAddModel implements Interface.Model {
 
     @Override
     public void saveProduct(Product product) {
-        String tokenApi = PreferencesHandler.getTokenApi(this.presenter.getAppContext());
-        RequestHandler handler = RequestHandler.getInstance(tokenApi);
 
+        RequestHandler handler = RequestHandler.getInstance(presenter.onLoadTokenApi());
         RequestParams params = new RequestParams();
         params.put("nombre", product.getNombre());
         params.put("categoriaId", product.getCategoria());
@@ -37,20 +35,16 @@ public class ProductAddModel implements Interface.Model {
         params.put("descripcion", product.getDescripcion());
         params.put("precio", product.getPrecio());
 
-
         try {
-
             for (int i = 0; i < product.getImage().size(); i++) {
                 params.put("image[" + i + "]", product.getImageFile(i), "image/jpeg");
             }
-
             params.setUseJsonStreamer(false);
         } catch (FileNotFoundException e) {
             log("error:" + e.getMessage());
         }
 
-
-        handler.post(presenter.getAppContext(), BuildConfig.HOST + "/product", params, new RestListener() {
+        handler.post(BuildConfig.HOST + "/product", params, new RestListener() {
             @Override
             public void onSuccess(int statusCode, Header[] headers, String data) {
                 presenter.onSaveProduct();

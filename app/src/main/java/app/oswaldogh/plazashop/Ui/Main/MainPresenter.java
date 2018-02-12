@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
-import android.content.Context;
-
 /**
  * Created by oswaldogh89 on 16/12/17.
  */
@@ -48,10 +46,8 @@ class MainPresenter implements Interface.Presenter {
     }
 
     @Override
-    public Context getAppContext() {
-        if (this.view != null) {
-            return this.view.getActivityContext();
-        }
-        return null;
+    public void onSaveTokenApi(String tokenApi) {
+        if (view != null)
+            this.view.setTokenApi(tokenApi);
     }
 }
