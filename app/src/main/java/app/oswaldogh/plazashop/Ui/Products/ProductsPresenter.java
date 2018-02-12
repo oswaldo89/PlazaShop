@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.Products;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 import app.oswaldogh.plazashop.Entities.Product;
@@ -38,13 +36,5 @@ public final class ProductsPresenter implements Interface.Presenter {
             }
             this.view.hideLoadMoreProgress();
         }
-    }
-
-    @Override
-    public Context getAppContext() {
-        if (this.view != null) {
-            return this.view.getActivityContext();
-        }
-        return null;
     }
 }

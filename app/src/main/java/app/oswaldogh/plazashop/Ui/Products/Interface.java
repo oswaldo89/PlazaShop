@@ -1,7 +1,5 @@
 package app.oswaldogh.plazashop.Ui.Products;
 
-import android.content.Context;
-
 import java.util.ArrayList;
 
 import app.oswaldogh.plazashop.Entities.Product;
@@ -18,13 +16,10 @@ public interface Interface {
         void hideLoadMoreProgress();
         void setProductListEmpty();
         boolean adapterIsNull();
-        Context getAppContext();
-        Context getActivityContext();
     }
 
     interface Presenter {
         void onLoadProucts(ArrayList<Product> products);
-        Context getAppContext();
     }
 
     interface Model {

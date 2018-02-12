@@ -1,7 +1,6 @@
 package app.oswaldogh.plazashop.Ui.Products;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -78,16 +77,6 @@ public class ProductsFragment extends Fragment implements Interface.View, Produc
     @Override
     public boolean adapterIsNull() {
         return adapter == null;
-    }
-
-    @Override
-    public Context getAppContext() {
-        return getActivity().getApplicationContext();
-    }
-
-    @Override
-    public Context getActivityContext() {
-        return getActivity();
     }
 
     @Override
