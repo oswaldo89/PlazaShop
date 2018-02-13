@@ -17,15 +17,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="Plaza Shop es una aplicación creada sin fines de lucro para ayudar a administrar y visualizar de una manera mas facil y rapida tanto por parte de los vendedores como de los compradores los diferentes productos que se venden en cada uno de los locales."
+        android:text="PlazaShop v1.1"
         android:textSize="16dp" />
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="Para cualquier duda o aclaracion mi correo de contacto: oswaldo.gh89@gmail.com"
-        android:textSize="16dp" />
 
 </LinearLayout>

@@ -12,6 +12,7 @@ public interface Interface {
         void showLoginDialog();
         void hideLoginDialog();
         void setTokenApi(String tokenApi);
+        void hideKeyboard();
     }
 
     interface Presenter {

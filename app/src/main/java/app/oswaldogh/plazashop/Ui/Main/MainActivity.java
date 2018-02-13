@@ -1,6 +1,8 @@
 package app.oswaldogh.plazashop.Ui.Main;
 
+import android.app.Activity;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,11 +13,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -153,6 +157,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     @Override
+    public void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager)getSystemService(Activity.INPUT_METHOD_SERVICE);
+        if (imm.isActive()){
+            imm.toggleSoftInput(InputMethodManager.HIDE_IMPLICIT_ONLY, 0); // hide
+        } else {
+            imm.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY); // show
+        }
+    }
+
+    @Override
     public void loginFailed(String message) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
     }
@@ -199,8 +213,34 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     //endregion
 
     public void onNewProduct(View v) {
-        Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
-        startActivity(i);
+
+        if (!PreferencesHandler.getTokenApi(this).equals("")){
+            Intent i = new Intent(MainActivity.this, ProductAddActivity.class);
+            startActivity(i);
+        }else{
+            AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+            alertDialog.setTitle("PlazaShop");
+            alertDialog.setMessage("Para poder agregar un producto necesita ser un usuario registrado. Desea registrarse ahora ?");
+            alertDialog.setIcon(R.drawable.ic_iconapp);
+            alertDialog.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent i = new Intent(MainActivity.this, RegisterActivity.class);
+                    startActivity(i);
+                    finish();
+                }
+            });
+            alertDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            });
+            alertDialog.show();
+        }
+
+
+
+
+
     }
 
 }

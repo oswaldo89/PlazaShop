@@ -14,6 +14,20 @@
         android:orientation="vertical">
 
         <EditText
+            android:id="@+id/txtName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/cuadrado"
+            android:hint="Nombre del Usuario"
+            android:inputType="textEmailAddress"
+            android:padding="10dp" />
+
+        <EditText
             android:id="@+id/txtEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

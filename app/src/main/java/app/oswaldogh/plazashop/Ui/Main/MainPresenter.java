@@ -30,6 +30,7 @@ class MainPresenter implements Interface.Presenter {
 
     void doLogin(String user, String pass) {
         if (view != null)
+            view.hideKeyboard();
             this.model.tryLogin(user, pass);
     }
 
