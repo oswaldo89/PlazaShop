@@ -25,7 +25,7 @@ import static app.oswaldogh.plazashop.Tools.UtilsKt.log;
 public class ProductDetailActivity extends AppCompatActivity implements Interface.View {
     private FloatingActionButton btnLike, btnDislike;
     private ImageView imWhatsapp, imSms, imMsg;
-    private TextView titleProduct, descriptionProduct, priceProduct;
+    private TextView titleProduct, descriptionProduct, priceProduct, localNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,12 +65,14 @@ public class ProductDetailActivity extends AppCompatActivity implements Interfac
         titleProduct.setText(product.getNombre());
         descriptionProduct.setText(product.getDescripcion());
         priceProduct.setText("$" + product.getPrecio() + " pesos");
+        localNumber.setText("" + product.getLocal());
     }
 
     private void initView() {
         titleProduct = findViewById(R.id.titleProduct);
         descriptionProduct = findViewById(R.id.descriptionProduct);
         priceProduct = findViewById(R.id.priceProduct);
+        localNumber = findViewById(R.id.localNumber);
         btnLike = findViewById(R.id.btnLike);
         btnDislike = findViewById(R.id.btnDislike);
         imWhatsapp = findViewById(R.id.imWhatsapp);

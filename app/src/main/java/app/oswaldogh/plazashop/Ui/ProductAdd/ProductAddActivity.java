@@ -67,20 +67,30 @@ public class ProductAddActivity extends AppCompatActivity implements Interface.V
         int mCategory = spnCategories.getSelectedItemPosition();
         int mLocal = txtLocalNumber.getText().toString().equals("") ? 0 : Integer.parseInt(txtLocalNumber.getText().toString());
 
-        product.setNombre(mName);
-        product.setPrecio(mPrice);
-        product.setDescripcion(mDescription);
-        product.setCategoria(mCategory);
-        product.setLocal(mLocal);
 
-        List<File> imagesModel = new ArrayList<>();
-        HashMap<Integer, String> images = picker.GetPathImages();
-        for (Map.Entry entry : images.entrySet()) {
-            String pathImg = "content://media/" + entry.getValue().toString();
-            imagesModel.add(new File(Image.compressImage(pathImg, ProductAddActivity.this)));
+        if(mName.equals("")){
+            Toast.makeText(this, "Ingresa el nombre del producto.", Toast.LENGTH_SHORT).show();
+        }else if(mDescription.equals("")){
+            Toast.makeText(this, "Ingresa la descripción del producto.", Toast.LENGTH_SHORT).show();
+        }else if(mLocal == 0){
+            Toast.makeText(this, "Para un mejor servicio, el numero del local es requerido.", Toast.LENGTH_SHORT).show();
+        }else{
+            product.setNombre(mName);
+            product.setPrecio(mPrice);
+            product.setDescripcion(mDescription);
+            product.setCategoria(mCategory);
+            product.setLocal(mLocal);
+
+            List<File> imagesModel = new ArrayList<>();
+            HashMap<Integer, String> images = picker.GetPathImages();
+            for (Map.Entry entry : images.entrySet()) {
+                String pathImg = "content://media/" + entry.getValue().toString();
+                imagesModel.add(new File(Image.compressImage(pathImg, ProductAddActivity.this)));
+            }
+            product.setImage(imagesModel);
+            presenter.saveProduct(product);
         }
-        product.setImage(imagesModel);
-        presenter.saveProduct(product);
+
     }
 
     @Override
